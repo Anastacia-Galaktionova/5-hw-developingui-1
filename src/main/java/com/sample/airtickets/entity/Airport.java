@@ -1,5 +1,6 @@
 package com.sample.airtickets.entity;
 
+import io.jmix.core.entity.annotation.CaseConversion;
 import io.jmix.core.entity.annotation.JmixGeneratedValue;
 import io.jmix.core.metamodel.annotation.InstanceName;
 import io.jmix.core.metamodel.annotation.JmixEntity;
@@ -25,6 +26,7 @@ public class Airport {
     @NotNull
     private String name;
 
+    @CaseConversion
     @Column(name = "CODE", nullable = false)
     @NotNull
     private String code;

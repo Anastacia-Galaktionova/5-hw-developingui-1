@@ -4,6 +4,10 @@
     <menu id="application" caption="msg://com.sample.airtickets/menu.application" insertBefore="administration">
         <item screen="User.browse" caption="msg://com.sample.airtickets.screen.user/UserBrowse.caption"/>
         <item screen="themeSettingsScreen" caption="msg://io.jmix.ui.app.themesettings/themeSettings.caption"/>
+        <menu id="ReferenceData" caption="msg://com.sample.airtickets/menu_config.ReferenceData">
+            <item screen="Airline.browse" caption="msg://com.sample.airtickets.screen.airline/airlineBrowse.menu"/>
+            <item screen="Airport.browse" caption="msg://com.sample.airtickets.screen.airport/airportBrowse.menu"/>
+        </menu>
     </menu>
 
 </menu-config>
