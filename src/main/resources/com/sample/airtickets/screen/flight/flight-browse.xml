@@ -14,6 +14,32 @@
             <loader id="flightsDl">
                 <query>
                     <![CDATA[select e from Flight e]]>
+                    <condition>
+                        <and>
+                            <or>
+                                <c:jpql>
+                                    <c:where>e.fromAirport = :component_airportFilterCb</c:where>
+                                </c:jpql>
+                                <c:jpql>
+                                    <c:where>e.toAirport = :component_airportFilterCb</c:where>
+                                </c:jpql>
+                            </or>
+                            <c:jpql>
+                                <c:where>e.takeOffDate >= :component_takeOffFromDf</c:where>
+                            </c:jpql>
+                            <c:jpql>
+                                <c:where>e.takeOffDate &lt; :component_takeOffToDf </c:where>
+                            </c:jpql>
+                        </and>
+                    </condition>
+                </query>
+            </loader>
+        </collection>
+        <collection id="airportsDc" class="com.sample.airtickets.entity.Airport">
+            <fetchPlan extends="_base"/>
+            <loader id="airportsDl">
+                <query>
+                    <![CDATA[select e from Airport e]]>
                 </query>
             </loader>
         </collection>
@@ -35,10 +61,12 @@
     <dialogMode height="600"
                 width="800"/>
     <layout expand="flightsTable" spacing="true">
-        <filter id="filter"
-                dataLoader="flightsDl">
-            <properties include=".*"/>
-        </filter>
+        <groupBox orientation="horizontal" spacing="true">
+            <entityComboBox id="airportFilterCb" caption="msg://airportFilterCb.caption" optionsContainer="airportsDc"
+                            property="name"/>
+            <dateField id="takeOffFromDf" caption="msg://takeOffFromDf.caption" datatype="offsetDateTime"/>
+            <dateField id="takeOffToDf" caption="msg://takeOffTo.caption" datatype="offsetDateTime"/>
+        </groupBox>
         <groupTable id="flightsTable"
                     width="100%"
                     dataContainer="flightsDc">
